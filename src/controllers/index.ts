@@ -4,6 +4,8 @@ import { Container } from 'typedi';
 import { Logger } from 'winston';
 import authController from './auth.controller';
 import healthController from './health.controller';
+import buyerController from './buyer.controller';
+import sellerController from './seller.controller';
 
 const router = Router();
 
@@ -27,5 +29,7 @@ router.use(
  */
 router.use('/auth', authController);
 router.use('/health', healthController);
+router.use('/buyer', buyerController);
+router.use('/seller', sellerController);
 
 export default router;

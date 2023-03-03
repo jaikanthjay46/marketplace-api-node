@@ -11,6 +11,7 @@ import {
   DataType,
   Default,
   DefaultScope,
+  HasMany,
   Model,
   PrimaryKey,
   Table,
@@ -18,6 +19,7 @@ import {
 } from 'sequelize-typescript';
 import { UserRoleEnum } from '../types/enums';
 import { generateSignedJWT } from '../utils';
+import CatalogModel from "./catalog.model";
 
 @DefaultScope(() => ({
   attributes: {
@@ -60,6 +62,9 @@ export default class UserModel extends Model<UserModel> {
   @Comment("Date and time of the user's creation date")
   @Column(DataType.DATE)
   createdAt!: string;
+
+  @HasMany(() => CatalogModel)
+  catalogues!: CatalogModel[];
 
 
   // Model Hooks

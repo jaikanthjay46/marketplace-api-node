@@ -3,6 +3,7 @@ import { Service } from 'typedi';
 import { userDTO } from '../dto';
 import { UserModel } from '../models';
 import { CreateUserDTO, User } from '../types';
+import { UserRoleEnum } from '../types/enums';
 
 @Service()
 export default class UserService {
@@ -17,6 +18,15 @@ export default class UserService {
     }
 
     return userDTO(user);
+  }
+
+  /**
+   * Returns tall users by UserRoleEnum
+   */
+  async getUsersByRole(role: UserRoleEnum): Promise<User[]> {
+    const users = await UserModel.findAll({where: { role }});
+
+    return users.map(user => userDTO(user));
   }
 
   /**
